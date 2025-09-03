@@ -1,0 +1,18 @@
+{
+  "name": "projetocamaradeputados6",
+  "version": "1.0.0",
+  "description": "Projeto Câmara dos Deputados Front e Backend",
+  "main": "index.js",
+  "scripts": {
+    "dev":"node --watch index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Willian Santos",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^30.1.3"
+  }
+}

@@ -6,5 +6,7 @@ const controllerDeputados = new ControllerDeputados();
 const router = express.Router();
 
 router.get('/api/v1/deputados', controllerDeputados.PegarTodos)
+router.get('/api/v1/deputados/:id', controllerDeputados.PegarPorId)
+router.get('/api/v1/deputados/:id/despesas', controllerDeputados.PegarDespesas)
 
 module.exports = router;

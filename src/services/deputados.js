@@ -1,5 +1,17 @@
 const OpsDeputados = require("../api/api")
 
+function recuperaLink(dados){
+    const links = dados.links;
+        var filtroUltimaPagina = links.filter(obj => (
+            obj.rel == "last"
+         ))
+        const stringUltimaPagina = filtroUltimaPagina[0].href;
+        const IndicePagina = stringUltimaPagina.indexOf("pagina");
+        const IndiceItens = stringUltimaPagina.indexOf("itens");
+        const ultimaPagina = Number(stringUltimaPagina.slice(IndicePagina+7, IndiceItens - 1));
+        return ultimaPagina;
+}
+
 class ServiceDeputado{
 
     async PegarTodos(){
@@ -15,18 +27,54 @@ class ServiceDeputado{
     async PegarPorId(id){
 
         const dados = await OpsDeputados.fetchById(id)
-        const despesas = await OpsDeputados.fetchDespesas(id, "", "", 4)
-        const todosDados = {dados, despesas}
-        return todosDados;
+        return dados;
 
     }
 
-    async PegarDespesas(id, ano, mes){
+    async PegarDespesas(id, ano, mes, pagina){
 
-        const dados = await OpsDeputados.fetchDespesas(id, ano, mes);
+       
+        if(!ano && !mes){
+        const dados = await OpsDeputados.fetchDespesas(id, "", "", pagina);
+        const ultimaPagina = recuperaLink(dados);
+        return [dados.dados, ultimaPagina];
+        }else if(!ano && mes){
+        const dados = await OpsDeputados.fetchDespesas(id, "", mes, pagina);
+        const ultimaPagina = recuperaLink(dados)
+        return [dados.dados, ultimaPagina];
+        }else if(ano && !mes){
+        const dados = await OpsDeputados.fetchDespesas(id, ano, "", pagina);
+        const ultimaPagina = recuperaLink(dados)
+        return [dados.dados, ultimaPagina];
+        }else{
+        const dados = await OpsDeputados.fetchDespesas(id, ano, mes, pagina);
+        const ultimaPagina = recuperaLink(dados)
+        return [dados.dados, ultimaPagina];
+        }
+        
+        
+
+    }
+
+    async PegarDiscursos(id, dtInicio, dtFim){
+
+        if(!dtInicio && !dtFim){
+        const dados = await OpsDeputados.fetchDiscursos(id);
         return dados.dados;
+        }else if(!dtInicio && dtFim){
+        const dados = await OpsDeputados.fetchDiscursos(id, "", dtFim);
+        return dados.dados;
+        }else if(dtInicio && !dtFim){
+        const dados = await OpsDeputados.fetchDiscursos(id, dtInicio, "");
+        return dados.dados;
+        }else{
+        const dados = await OpsDeputados.fetchDiscursos(id, dtInicio, dtFim);
+        return dados.dados;
+        }
 
+        
     }
+
 
 }
 

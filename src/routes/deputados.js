@@ -9,5 +9,10 @@ router.get('/api/v1/deputados', controllerDeputados.PegarTodos)
 router.get('/api/v1/deputados/:id', controllerDeputados.PegarPorId)
 router.post('/api/v1/deputados/:id/despesas', controllerDeputados.PegarDespesas)
 router.post('/api/v1/deputados/:id/discursos', controllerDeputados.PegarDiscursos)
+router.post('/api/v1/deputados/:id/eventos', controllerDeputados.PegarEventos)
+router.get('/api/v1/deputados/:id/frentes', controllerDeputados.PegarFrentes)
+router.get('/api/v1/deputados/:id/historico', controllerDeputados.PegarHistorico)
+router.get('/api/v1/deputados/:id/ocupacoes', controllerDeputados.PegarOcupacoes)
+router.get('/api/v1/deputados/:id/profissoes', controllerDeputados.PegarProfissoes)
 
 module.exports = router;

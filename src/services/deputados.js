@@ -1,4 +1,4 @@
-const OpsDeputados = require("../api/api")
+const OpsDeputados = require("../api/apiDeputados")
 
 function recuperaLink(dados){
     const links = dados.links;
@@ -75,7 +75,58 @@ class ServiceDeputado{
         
     }
 
+    async PegarEventos(id, dtInicio, dtFim, pagina){
+
+        if(!dtInicio && !dtFim){
+        const dados = await OpsDeputados.fetchEventos(id, pagina);
+        const ultimaPagina = recuperaLink(dados);
+        return [dados.dados, ultimaPagina];
+        }else if(!dtInicio && dtFim){
+        const dados = await OpsDeputados.fetchEventos(id, "", dtFim, pagina);
+        const ultimaPagina = recuperaLink(dados);
+        return [dados.dados, ultimaPagina];
+        }else if(dtInicio && !dtFim){
+        const dados = await OpsDeputados.fetchEventos(id, dtInicio, "", pagina);
+        const ultimaPagina = recuperaLink(dados);
+        return [dados.dados, ultimaPagina];
+        }else{
+        const dados = await OpsDeputados.fetchEventos(id, dtInicio, dtFim, pagina);
+        const ultimaPagina = recuperaLink(dados);
+        return [dados.dados, ultimaPagina];
+        }
+
+        
+    }
+
+    async PegarFrentes(id){
+
+        const dados = await OpsDeputados.fetchFrentes(id)
+        return dados;
+
+    }
+
+    async PegarHistorico(id){
+
+        const dados = await OpsDeputados.fetchHistorico(id)
+        return dados;
+
+    }
+
+    async PegarOcupacoes(id){
+
+        const dados = await OpsDeputados.fetchOcupacoes(id)
+        return dados;
+
+    }
+
+    async PegarProfissoes(id){
+
+        const dados = await OpsDeputados.fetchProfissoes(id)
+        return dados;
+
+    }
+
 
 }
 
-module.exports = ServiceDeputado;
+module.exports = {ServiceDeputado, recuperaLink};

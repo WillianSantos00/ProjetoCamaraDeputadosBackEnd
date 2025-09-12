@@ -1,11 +1,14 @@
 const express = require("express");
-const routers = require("./src/routes/deputados.js")
+const deputadoRouter = require("./src/routes/deputados.js");
+const proposicoesRouter = require("./src/routes/proposicoes.js");
+
 
 const app = express();
 
 app.use(express.json());
 
-app.use(routers);
+app.use(deputadoRouter);
+app.use(proposicoesRouter);
 
 const porta = 3000
 app.listen(porta, () =>{

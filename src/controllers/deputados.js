@@ -1,4 +1,4 @@
-const ServiceDeputado = require("../services/deputados");
+const {ServiceDeputado} = require("../services/deputados");
 
 const service = new ServiceDeputado();
 
@@ -67,6 +67,86 @@ class ControllerDeputados{
             res.status(200).send({result})
             }
             
+            
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+
+    }
+
+    async PegarEventos(req, res){
+
+        try {
+
+            const {id} = req.params;
+            if(req.body){
+            const {dtInicio, dtFim, pagina} = req.body
+            const result = await service.PegarEventos(id, dtInicio, dtFim, pagina);
+            res.status(200).send({result})
+            }else{
+            const result = await service.PegarEventos(id);
+            res.status(200).send({result})
+            }
+            
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+
+    }
+    
+    async PegarFrentes(req, res){
+
+        try {
+
+            const {id} = req.params;
+            const result = await service.PegarFrentes(id);
+
+            res.status(200).send({result})
+            
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+
+    }
+
+    async PegarHistorico(req, res){
+
+        try {
+
+            const {id} = req.params;
+            const result = await service.PegarHistorico(id);
+
+            res.status(200).send({result})
+            
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+
+    }
+
+    async PegarOcupacoes(req, res){
+
+        try {
+
+            const {id} = req.params;
+            const result = await service.PegarOcupacoes(id);
+
+            res.status(200).send({result})
+            
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+
+    }
+
+    async PegarProfissoes(req, res){
+
+        try {
+
+            const {id} = req.params;
+            const result = await service.PegarProfissoes(id);
+
+            res.status(200).send({result})
             
         } catch (error) {
             res.status(500).send({ msg: error.message })

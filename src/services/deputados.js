@@ -19,7 +19,7 @@ class ServiceDeputado{
         const dados = await OpsDeputados.fetchAll()
         const deputado = (dados.dados).map(({id, nome, siglaPartido, siglaUf, urlFoto}) => 
     ({id, nome, siglaPartido, siglaUf, urlFoto}))
-        console.log(deputado)
+        
         return deputado
 
     }

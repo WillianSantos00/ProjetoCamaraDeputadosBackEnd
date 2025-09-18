@@ -3,6 +3,7 @@ const deputadoRouter = require("./src/routes/deputados.js");
 const proposicoesRouter = require("./src/routes/proposicoes.js");
 const partidosRouter = require("./src/routes/partidos.js");
 const legislaturasRouter = require("./src/routes/legislaturas.js")
+const eventosRouter = require("./src/routes/eventos.js")
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(deputadoRouter);
 app.use(proposicoesRouter);
 app.use(partidosRouter);
 app.use(legislaturasRouter)
+app.use(eventosRouter)
 
 const porta = 3000
 app.listen(porta, () =>{

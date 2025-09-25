@@ -37,7 +37,7 @@ class ServiceDeputado{
         if(!ano && !mes){
         const dados = await OpsDeputados.fetchDespesas(id, "", "", pagina);
         const ultimaPagina = recuperaLink(dados);
-        return [dados.dados, ultimaPagina];
+        return [dados.dados, ultimaPagina]
         }else if(!ano && mes){
         const dados = await OpsDeputados.fetchDespesas(id, "", mes, pagina);
         const ultimaPagina = recuperaLink(dados)

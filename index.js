@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors")
 const deputadoRouter = require("./src/routes/deputados.js");
 const proposicoesRouter = require("./src/routes/proposicoes.js");
 const partidosRouter = require("./src/routes/partidos.js");
@@ -11,6 +12,9 @@ const database = require("./src/database.js");
 const app = express();
 
 app.use(express.json());
+app.use(cors({
+    origin: 'http://localhost:3001'
+}))
 
 app.use(deputadoRouter);
 app.use(proposicoesRouter);

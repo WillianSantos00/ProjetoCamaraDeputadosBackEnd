@@ -16,7 +16,7 @@ class Usuario{
                 unique: true
             },
             telefone: {
-                type: database.db.Sequelize.INTEGER
+                type: database.db.Sequelize.STRING
             }
         })
 

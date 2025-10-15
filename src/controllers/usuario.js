@@ -17,6 +17,21 @@ class ControllerUsuario{
 
     }
 
+    async EnviarEmails(req, res){
+
+         try{
+
+            const result = serviceUsuario.EnviarEmails()
+           
+            res.status(200).send(result)
+
+        }catch(error){
+
+        }
+        res.status(500).send({ msg: error.message })
+
+    }
+
 }
 
 module.exports = ControllerUsuario;

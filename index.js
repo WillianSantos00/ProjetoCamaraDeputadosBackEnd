@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 const express = require("express");
 const cors = require("cors")
+=======
+const express = require('express');
+>>>>>>> origin/validacao
 const deputadoRouter = require("./src/routes/deputados.js");
 const proposicoesRouter = require("./src/routes/proposicoes.js");
 const partidosRouter = require("./src/routes/partidos.js");
@@ -15,6 +19,7 @@ app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:3001'
 }))
+
 
 app.use(deputadoRouter);
 app.use(proposicoesRouter);
@@ -34,9 +39,20 @@ database.db
     console.log("Serviço rodando na porta "+porta)
 
 })
+<<<<<<< HEAD
     })
     .catch((e) =>{
         console.log(`Não foi possível conectar com o banco: ${e}`)
     })
 
 
+=======
+
+app.get('/', (req, res) => {
+    res.status(200).json({ 
+        message: 'API da Câmara dos Deputados rodando no Docker!',
+        status: 'OK',
+        api_version: '1.0'
+    });
+});
+>>>>>>> origin/validacao

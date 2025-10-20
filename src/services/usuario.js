@@ -1,5 +1,6 @@
 const usuario = require("../model/usuario");
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 class ServiceUsuario{
 
@@ -19,8 +20,8 @@ class ServiceUsuario{
 
     async EnviarEmails(){
 
-        const user = "ganbool5@gmail.com";
-        const pass = "mqpv mzmc cktn kdzk";
+        const user =  process.env.USER;
+        const pass =  process.env.PASS;
 
         const emails = await usuario.findAll({
             attributes: ['email']
@@ -37,8 +38,8 @@ class ServiceUsuario{
                transporter.sendMail({
                     from: user,
                     to: destinatario,
-                    subject: "Teste Envio E-mail",
-                    text: "Teste Funcionando"
+                    subject: "Atualização de Informações",
+                    text: "Olá! Novas informações sobre política estão disponíveis no nosso ambiente!"
                }).then(info=>{
                 console.log(info)
                }).catch(error=>{

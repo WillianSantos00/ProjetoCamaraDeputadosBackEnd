@@ -1,8 +1,9 @@
 const { GoogleGenAI } = require("@google/genai");
 const OpsDeputados = require("./apiDeputados");
-const OpsProposicoes = require("./apiProposicoes")
+const OpsProposicoes = require("./apiProposicoes");
+require("dotenv").config();
 
-const ai = new GoogleGenAI({apiKey:"AIzaSyBokVGKsjRCBJSkxwPJITBp3kyfXy8E0Xo"});
+const ai = new GoogleGenAI({});
 
 class GeminiOps{
 

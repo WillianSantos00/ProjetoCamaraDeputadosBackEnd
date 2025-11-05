@@ -23,3 +23,20 @@ services:
       DB_NAME: banco_de_dados_usuarios
     depends_on:
       - db
+      
+  nginx:
+    image: nginx:latest
+    container_name: camara_nginx
+    restart: always
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+    networks:
+      - camara_network
+
+networks:
+  camara_network:
+    driver: bridge

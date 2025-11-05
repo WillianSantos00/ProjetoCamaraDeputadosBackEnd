@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1qaz!QAZ
+      MYSQL_DATABASE: banco_de_dados_usuarios
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/camara_db.sql:/docker-entrypoint-initdb.d/camara_db.sql
+
+  app:
+    build: .
+    container_name: camara_node_app
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: 1qaz!QAZ
+      DB_NAME: banco_de_dados_usuarios
+    depends_on:
+      - db

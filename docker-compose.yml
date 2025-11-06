@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: 1qaz!QAZ
+      MYSQL_DATABASE: camara_deputados
+    volumes:
+      - ./db/camara_db.sql:/docker-entrypoint-initdb.d/camara_db.sql
+    networks:
+      - camara_network
+
+  app:
+    build: .
+    container_name: camara_app
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: 1qaz!QAZ
+      DB_NAME: camara_deputados
+    depends_on:
+      - db
+    networks:
+      - camara_network
+  nginx:
+    image: nginx:latest
+    container_name: camara_nginx
+    restart: always
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+    networks:
+      - camara_network
+
+networks:
+  camara_network:
+    driver: bridge

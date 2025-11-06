@@ -12,10 +12,10 @@ class Database {
 
         this.db = new Sequelize({
             database: "camara_db",
-            host: "localhost",
+            host: "mysql_db",
             username: "root",
             dialect: "mysql",
-            password: ""
+            password: "1qaz!QAZ"
         })
 
     }

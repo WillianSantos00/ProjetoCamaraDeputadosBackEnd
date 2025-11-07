@@ -1,0 +1,22 @@
+FROM node:lts-alpine as builder
+
+WORKDIR /app
+
+COPY ./ProjetoCamaraDeputadosFrontEnd/package.json ./ProjetoCamaraDeputadosFrontEnd/package-lock.json ./
+
+RUN npm install
+
+COPY ./ProjetoCamaraDeputadosFrontEnd/ .
+
+RUN npm run build
+
+
+FROM nginx:alpine
+
+RUN rm /etc/nginx/conf.d/default.conf
+
+COPY ./nginx/conf.d/frontend.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=builder /app/build /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]

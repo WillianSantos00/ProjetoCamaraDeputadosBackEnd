@@ -2,14 +2,9 @@ FROM node:lts-alpine as builder
 
 WORKDIR /app
 
-COPY ./ProjetoCamaraDeputadosFrontEnd/package.json ./ProjetoCamaraDeputadosFrontEnd/package-lock.json ./
-
-RUN npm install
-
 COPY ./ProjetoCamaraDeputadosFrontEnd/ .
 
-RUN npm run build
-
+RUN npm install && npm run build
 
 FROM nginx:alpine
 

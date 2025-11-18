@@ -13,8 +13,8 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost:3001', 'http://localhost']
-}))
+    origin: ['http://localhost:3001', 'http://localhost', 'http://localhost:80']
+}));
 
 
 app.use(deputadoRouter);

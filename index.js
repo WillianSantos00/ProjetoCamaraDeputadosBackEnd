@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 const express = require('express');
+=======
+const express = require("express");
+const cors = require("cors")
+>>>>>>> mudancas
 const deputadoRouter = require("./src/routes/deputados.js");
 const proposicoesRouter = require("./src/routes/proposicoes.js");
 const partidosRouter = require("./src/routes/partidos.js");
@@ -12,8 +17,8 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:3001'
-}))
+    origin: ['http://localhost:3001', 'http://localhost', 'http://localhost:80']
+}));
 
 
 app.use(deputadoRouter);
@@ -34,6 +39,7 @@ database.db
     console.log("Serviço rodando na porta "+porta)
 
 })
+<<<<<<< HEAD
 
 app.get('/'), (req, res) => {}
     res.status(200).json({ 
@@ -42,3 +48,11 @@ app.get('/'), (req, res) => {}
         api_version: '1.0'
     });
 })
+=======
+    })
+    .catch((e) =>{
+        console.log(`Não foi possível conectar com o banco: ${e}`)
+    })
+
+
+>>>>>>> mudancas

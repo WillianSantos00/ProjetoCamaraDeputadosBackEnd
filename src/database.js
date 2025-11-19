@@ -11,11 +11,11 @@ class Database {
     init(){
 
         this.db = new Sequelize({
-            database: process.env.DB_NAME,
-            host: process.env.DB_HOST,
-            username: process.env.DB_USER,
+            database: "camara_db",
+            host: "localhost",
+            username: "root",
             dialect: "mysql",
-            password: process.env.DB_PASSWORD,
+            password: ""
         })
 
     }

@@ -5,7 +5,7 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: docker_password
+      MYSQL_ROOT_PASSWORD: 1qaz!QAZ
       MYSQL_DATABASE: camara_deputados
     command: --default-authentication-plugin=mysql_native_password
     volumes:
